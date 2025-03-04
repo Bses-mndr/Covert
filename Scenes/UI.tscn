@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbdaxatvlra0l"]
+
+[ext_resource type="FontFile" uid="uid://dm1htfdjtb7dr" path="res://Fonts/Dutch.ttf" id="1_03lwh"]
+[ext_resource type="Texture2D" uid="uid://d3rfup1e15ywj" path="res://SceneObjects/dot.png" id="1_57tj0"]
+[ext_resource type="Texture2D" uid="uid://blu6qkjjeu1wh" path="res://Materials/Blade of Miquella (2).jpg" id="2_udowh"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_02egw"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stamina" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 789.0
+offset_top = 601.0
+offset_right = 1120.0
+offset_bottom = 617.0
+theme_override_icons/grabber = SubResource("ImageTexture_02egw")
+value = 100.0
+
+[node name="Flashlight" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 601.0
+offset_right = 176.0
+offset_bottom = 617.0
+theme_override_icons/grabber = SubResource("ImageTexture_02egw")
+
+[node name="Interact" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 308.0
+offset_right = 742.0
+offset_bottom = 346.0
+theme_override_fonts/normal_font = ExtResource("1_03lwh")
+theme_override_font_sizes/normal_font_size = 30
+text = "[ E ] Interact"
+
+[node name="Info" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 25.0
+offset_right = 628.0
+offset_bottom = 78.0
+theme_override_fonts/normal_font = ExtResource("1_03lwh")
+theme_override_font_sizes/normal_font_size = 30
+text = "Exploring"
+
+[node name="Fatigued" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 789.0
+offset_top = 566.0
+offset_right = 953.0
+offset_bottom = 606.0
+theme_override_fonts/normal_font = ExtResource("1_03lwh")
+theme_override_font_sizes/normal_font_size = 30
+text = "Fatigued"
+
+[node name="Crosshair" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_57tj0")
+
+[node name="Paper" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 385.0
+offset_top = 23.0
+offset_right = 831.0
+offset_bottom = 631.0
+texture = ExtResource("2_udowh")
+expand_mode = 1

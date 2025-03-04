@@ -1,0 +1,190 @@
+[gd_scene load_steps=24 format=3 uid="uid://03gx3ieso84q"]
+
+[ext_resource type="PackedScene" uid="uid://b5ow6stuq2511" path="res://Scenes/Player.tscn" id="1_2sbuk"]
+[ext_resource type="PackedScene" uid="uid://cbdaxatvlra0l" path="res://Scenes/UI.tscn" id="1_akxwm"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_btgq6"]
+[ext_resource type="Script" path="res://Scripts/Level_manager.gd" id="3_c37yi"]
+[ext_resource type="PackedScene" uid="uid://csjtna1i7o3xc" path="res://SceneObjects/Flashlight.tscn" id="3_qtjse"]
+[ext_resource type="PackedScene" uid="uid://vm7qtoxvqk4n" path="res://SceneObjects/Door.tscn" id="4_hi4pj"]
+[ext_resource type="PackedScene" uid="uid://cg3lj666ekq1f" path="res://SceneObjects/Key.tscn" id="5_pwaij"]
+[ext_resource type="PackedScene" uid="uid://50i4aiomjsar" path="res://Scenes/Monster.tscn" id="6_6bkf4"]
+[ext_resource type="AudioStream" uid="uid://dd0e1tdv3mxvo" path="res://Audio/pickup.wav" id="6_dmkn7"]
+[ext_resource type="PackedScene" uid="uid://dg27kinrap1n5" path="res://SceneObjects/Table.tscn" id="8_ostt7"]
+[ext_resource type="PackedScene" uid="uid://c4lu4dv4kntq6" path="res://SceneObjects/Paper.tscn" id="9_d0txq"]
+[ext_resource type="PackedScene" uid="uid://ccy2lkldtmyu8" path="res://SceneObjects/Batteries.tscn" id="10_cu1ks"]
+[ext_resource type="Texture2D" uid="uid://7iv6w4t2obwx" path="res://Materials/Random.jpg" id="10_kdxk5"]
+[ext_resource type="Script" path="res://Scripts/Scare_trigger.gd" id="10_ohqbn"]
+[ext_resource type="AudioStream" uid="uid://dcxmiiiu27uj7" path="res://Audio/bg.wav" id="10_xmbbb"]
+[ext_resource type="AudioStream" uid="uid://dpjdl8txsymnc" path="res://Audio/gasp.wav" id="11_qts0h"]
+[ext_resource type="AudioStream" uid="uid://chkihqu45pkfd" path="res://Audio/knock.wav" id="13_nhncv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6gnjh"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(0.866545, 0.866545, 0.866545, 1)
+sky_energy_multiplier = 0.0
+ground_bottom_color = Color(0.466181, 0.466181, 0.466181, 1)
+ground_horizon_color = Color(0.866545, 0.866545, 0.866545, 1)
+
+[sub_resource type="Sky" id="Sky_qjcl5"]
+sky_material = SubResource("ProceduralSkyMaterial_6gnjh")
+
+[sub_resource type="Environment" id="Environment_saoa2"]
+background_mode = 2
+sky = SubResource("Sky_qjcl5")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_tymnv"]
+vertices = PackedVector3Array(-8.26496, -3.23829, -2.21506, -7.56496, -3.23829, -2.11506, -7.46496, -3.23829, -2.91506, -8.26496, -3.23829, -4.91506, -5.76496, -3.23829, -2.91506, -3.56496, -3.23829, -4.91506, -5.66496, -3.23829, -2.01506, -3.66496, -3.23829, -2.01506, -8.26496, 4.26171, -4.91506, -8.26496, 4.26171, 14.8849, 16.535, 4.26171, 14.8849, 16.535, 4.26171, -4.91506, 6.53504, -3.23829, -0.71506, 16.535, -3.23829, -0.61506, 16.535, -3.23829, -4.91506, 6.43504, -3.23829, -4.91506, -8.26496, -3.23829, 10.1849, -7.56496, -3.23829, 10.0849, -5.66496, -3.23829, 0.0849395, -3.66496, -3.23829, 0.0849395, -3.56496, -3.23829, 0.98494, -5.66496, -3.23829, 7.38494, -2.36496, -3.23829, 7.38494, -2.26496, -3.23829, 6.78494, 0.83504, -3.23829, 6.78494, 1.33504, -3.23829, 2.48494, 1.13504, -3.23829, 2.38494, 1.13504, -3.23829, 0.98494, 1.03504, -3.23829, 7.98494, 0.13504, -3.23829, 8.08494, 0.13504, -3.23829, 9.48494, 6.33504, -3.23829, 0.98494, 4.33504, -3.23829, 0.98494, 4.23504, -3.23829, 2.48494, 6.33504, -3.23829, 5.08494, 1.03504, -3.23829, 6.88494, 6.93504, -3.23829, 9.48494, 7.03504, -3.23829, 5.18494, 9.03504, -3.23829, 5.18494, 8.93504, -3.23829, 9.48494, 9.43504, -3.23829, 9.48494, 16.535, -3.23829, 9.38494, 16.535, -3.23829, 5.08494, -2.26496, -3.23829, 9.48494, -2.26496, -3.23829, 8.08494, -5.66496, -3.23829, 10.0849, -2.36496, -3.23829, 10.0849, 9.63504, -3.23829, 10.6849, 8.93504, -3.23829, 10.7849, 9.03504, -3.23829, 14.8849, 9.63504, -3.23829, 9.58494, 16.535, -3.23829, 14.8849, -7.46496, -3.23829, 10.8849, -8.26496, -3.23829, 14.8849, -2.36496, -3.23829, 10.6849, -5.76496, -3.23829, 10.8849, -1.66496, -3.23829, 10.7849, -1.76496, -3.23829, 14.8849)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 1), PackedInt32Array(1, 16, 0), PackedInt32Array(6, 7, 18), PackedInt32Array(18, 7, 19), PackedInt32Array(18, 19, 20), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 20), PackedInt32Array(20, 21, 18), PackedInt32Array(24, 26, 25), PackedInt32Array(27, 26, 20), PackedInt32Array(20, 26, 23), PackedInt32Array(23, 26, 24), PackedInt32Array(30, 29, 28), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(35, 25, 28), PackedInt32Array(28, 25, 33), PackedInt32Array(28, 33, 34), PackedInt32Array(35, 24, 25), PackedInt32Array(37, 36, 34), PackedInt32Array(34, 36, 28), PackedInt32Array(28, 36, 30), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 41), PackedInt32Array(41, 38, 42), PackedInt32Array(38, 39, 37), PackedInt32Array(37, 39, 36), PackedInt32Array(44, 29, 43), PackedInt32Array(43, 29, 30), PackedInt32Array(43, 46, 44), PackedInt32Array(44, 46, 22), PackedInt32Array(22, 46, 45), PackedInt32Array(22, 45, 21), PackedInt32Array(49, 48, 47), PackedInt32Array(50, 40, 41), PackedInt32Array(47, 50, 41), PackedInt32Array(49, 47, 51), PackedInt32Array(51, 47, 41), PackedInt32Array(17, 52, 16), PackedInt32Array(16, 52, 53), PackedInt32Array(46, 54, 45), PackedInt32Array(45, 54, 55), PackedInt32Array(53, 52, 55), PackedInt32Array(54, 56, 55), PackedInt32Array(55, 56, 57), PackedInt32Array(55, 57, 53), PackedInt32Array(56, 48, 57), PackedInt32Array(57, 48, 49)]
+cell_size = 0.1
+cell_height = 0.1
+agent_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jafe4"]
+albedo_texture = ExtResource("10_kdxk5")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6eq3d"]
+size = Vector3(3.6709, 1.34094, 0.193359)
+
+[node name="Level" type="Node3D" groups=["Monster"]]
+script = ExtResource("1_btgq6")
+bg_music = ExtResource("10_xmbbb")
+
+[node name="Level_manager" type="Node" parent="." node_paths=PackedStringArray("monster")]
+script = ExtResource("3_c37yi")
+monster = NodePath("../Monster")
+
+[node name="World Settings" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World Settings"]
+environment = SubResource("Environment_saoa2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World Settings"]
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
+light_energy = 0.36
+shadow_enabled = true
+
+[node name="UI" parent="." instance=ExtResource("1_akxwm")]
+offset_left = -1.0
+offset_top = 5.0
+offset_right = -1.0
+offset_bottom = 5.0
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8273, 3.43758, -10.7695)
+navigation_mesh = SubResource("NavigationMesh_tymnv")
+
+[node name="Terrain" type="CSGCombiner3D" parent="NavigationRegion3D"]
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.13504, -3.93829, 4.98494)
+size = Vector3(25, 1, 20)
+
+[node name="Ceiling" type="CSGBox3D" parent="NavigationRegion3D/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.13504, 3.65123, 4.98494)
+size = Vector3(25, 1, 20)
+
+[node name="Corridor_wall" type="CSGBox3D" parent="NavigationRegion3D/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.62974, 0, 10.1162)
+layers = 2
+size = Vector3(11.6309, 7.97644, 1)
+
+[node name="Corridor_wall2" type="CSGBox3D" parent="NavigationRegion3D/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.647363, 0, 7.41299)
+layers = 2
+size = Vector3(3.07666, 7.97644, 1)
+
+[node name="Big_wall" type="CSGBox3D" parent="NavigationRegion3D/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.448, 0, 2.23599)
+layers = 2
+size = Vector3(9.90137, 7.97644, 5.61816)
+
+[node name="Big_wall2" type="CSGBox3D" parent="NavigationRegion3D/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44459, 0, -1.99526)
+layers = 2
+size = Vector3(9.90137, 7.97644, 5.61816)
+
+[node name="Big_wall3" type="CSGBox3D" parent="NavigationRegion3D/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.62592, 0, 3.96167)
+layers = 2
+size = Vector3(1.6499, 7.97644, 13.5415)
+
+[node name="Table" parent="NavigationRegion3D" instance=ExtResource("8_ostt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74959, -3.43758, 1.5883)
+
+[node name="Player" parent="." instance=ExtResource("1_2sbuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.58243, 1.01281, -2.14694)
+collision_layer = 3
+collision_mask = 3
+
+[node name="pickup_audio" type="AudioStreamPlayer3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0190887, -0.351022, -0.0658219)
+stream = ExtResource("6_dmkn7")
+volume_db = 5.0
+pitch_scale = 0.85
+
+[node name="Monster" parent="." instance=ExtResource("6_6bkf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, -10)
+visible = false
+safe_margin = 0.01
+next_scene = "Death"
+
+[node name="Door" parent="." node_paths=PackedStringArray("key") instance=ExtResource("4_hi4pj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0, -1.14651)
+key = NodePath("../Key")
+
+[node name="Batteries" parent="." instance=ExtResource("10_cu1ks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2714, 1.10583, -9.21364)
+
+[node name="Batteries2" parent="." instance=ExtResource("10_cu1ks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.910116, 0.0134039, -4.48284)
+
+[node name="Flashlight" parent="." instance=ExtResource("3_qtjse")]
+transform = Transform3D(0.854196, 0.13101, 0.503176, -0.114351, 0.991377, -0.063998, -0.507221, -0.00287191, 0.861811, -5.60701, 1.1653, -9.14124)
+
+[node name="Key" parent="." instance=ExtResource("5_pwaij")]
+transform = Transform3D(0.828471, 0, 0.560032, 0, 1, 0, -0.560032, 0, 0.828471, -4.11318, 1.12524, -9)
+
+[node name="Paper" parent="." instance=ExtResource("9_d0txq")]
+transform = Transform3D(0.277947, 0, 0.112896, 0, 0.3, 0, -0.112896, 0, 0.277947, -4.86345, 1.09948, -9.11135)
+
+[node name="Paper_floor" parent="." instance=ExtResource("9_d0txq")]
+transform = Transform3D(0.194404, 0, 0.228489, 0, 0.3, 0, -0.228489, 0, 0.194404, -1.43561, 0, -4.24773)
+paper_material = SubResource("StandardMaterial3D_jafe4")
+paper_ui = ExtResource("10_kdxk5")
+
+[node name="Triggers" type="Node" parent="."]
+
+[node name="Scare_trigger_gasp" type="Area3D" parent="Triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9952, 2.38419e-07, -3.36012)
+script = ExtResource("10_ohqbn")
+audio_feedback = ExtResource("11_qts0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Scare_trigger_gasp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196769, 0.658876, -0.0489879)
+shape = SubResource("BoxShape3D_6eq3d")
+
+[node name="Scare_trigger_knock" type="Area3D" parent="Triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.26527, 2.38419e-07, -7.88631)
+script = ExtResource("10_ohqbn")
+audio_feedback = ExtResource("13_nhncv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Scare_trigger_knock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196769, 0.644881, -0.0489879)
+shape = SubResource("BoxShape3D_6eq3d")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="scare_sound" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9952, 5.085, -3.36012)
+volume_db = -5.0
+max_db = 2.0
+
+[node name="bg_audio" type="AudioStreamPlayer3D" parent="Audio"]
+volume_db = -5.0
+pitch_scale = 0.85
+
+[connection signal="body_entered" from="Triggers/Scare_trigger_gasp" to="Triggers/Scare_trigger_gasp" method="trigger_entered"]
+[connection signal="body_entered" from="Triggers/Scare_trigger_knock" to="Triggers/Scare_trigger_knock" method="trigger_entered"]

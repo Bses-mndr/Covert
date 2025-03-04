@@ -1,0 +1,78 @@
+extends CharacterBody3D
+
+var crosshair
+var movable = true
+
+var walk_speed
+var speed = 3.0
+var run_speed = 5.0
+
+var stamina = 100
+var stamina_slider
+var stamina_drain = 25
+var stamina_tmp = 0
+var fatigue_warn
+
+const JUMP_VELOCITY = 2.8
+
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+func _ready():
+	walk_speed = speed
+	crosshair = get_node("/root/"+get_tree().current_scene.name+"/UI/Crosshair")
+	crosshair.visible = true
+	stamina_slider = get_node("/root/"+get_tree().current_scene.name+"/UI/Stamina")
+	fatigue_warn = get_node("/root/"+get_tree().current_scene.name+"/UI/Fatigued")
+	fatigue_warn.visible = false
+
+func _process(delta: float) -> void:
+	if speed == run_speed && stamina >= stamina_slider.min_value:
+		stamina_slider.visible = true
+		stamina_tmp = stamina_slider.min_value
+		stamina -= stamina_drain * delta
+		stamina_slider.value = stamina
+	else:
+		if stamina < 5:
+			fatigue_warn.visible = true
+			stamina = stamina_slider.min_value
+			stamina_tmp += stamina_drain * .4 * delta
+			stamina_slider.value = stamina_tmp
+			if (stamina_tmp > (stamina_slider.max_value/2)):
+				stamina = stamina_tmp
+				fatigue_warn.visible = false
+		else:
+			if stamina <= stamina_slider.max_value:
+				stamina += stamina_drain * delta
+				stamina_slider.value = stamina
+	if stamina_slider.value == stamina_slider.max_value:
+		stamina_slider.visible = false
+
+
+func _physics_process(delta: float) -> void:
+
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	if movable:
+		# Handle jump.
+		if Input.is_action_just_pressed("Jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+
+		var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+			
+			if Input.is_action_pressed("Sprint") && stamina > stamina_slider.min_value:
+				speed = run_speed
+			else:
+				speed = walk_speed
+			
+		else:
+			speed = walk_speed
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
+
+		move_and_slide()

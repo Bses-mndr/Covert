@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://debfk0k85xj4l"]
+
+[ext_resource type="FontFile" uid="uid://dm1htfdjtb7dr" path="res://Fonts/Dutch.ttf" id="1_2tkl6"]
+
+[node name="Death Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 650.0
+color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[node name="You Died" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 250.0
+offset_right = 794.0
+offset_bottom = 388.0
+pivot_offset = Vector2(201, 62.171)
+theme_override_fonts/normal_font = ExtResource("1_2tkl6")
+theme_override_font_sizes/normal_font_size = 125
+text = "You Died"

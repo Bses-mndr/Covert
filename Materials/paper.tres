@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ddhhgmhwgdrvu"]
+
+[ext_resource type="Texture2D" uid="uid://blu6qkjjeu1wh" path="res://Materials/Blade of Miquella (2).jpg" id="1_dbi01"]
+
+[resource]
+albedo_texture = ExtResource("1_dbi01")
