@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://03gx3ieso84q"]
+[gd_scene load_steps=23 format=3 uid="uid://03gx3ieso84q"]
 
 [ext_resource type="PackedScene" uid="uid://b5ow6stuq2511" path="res://Scenes/Player.tscn" id="1_2sbuk"]
 [ext_resource type="PackedScene" uid="uid://cbdaxatvlra0l" path="res://Scenes/UI.tscn" id="1_akxwm"]
-[ext_resource type="Script" uid="uid://ut3xt06e0k0w" path="res://Scripts/Level.gd" id="1_btgq6"]
 [ext_resource type="Script" uid="uid://dtgpqgmadlfjl" path="res://Scripts/Level_manager.gd" id="3_c37yi"]
 [ext_resource type="PackedScene" uid="uid://csjtna1i7o3xc" path="res://SceneObjects/Flashlight.tscn" id="3_qtjse"]
 [ext_resource type="PackedScene" uid="uid://vm7qtoxvqk4n" path="res://SceneObjects/Door.tscn" id="4_hi4pj"]
@@ -18,19 +17,19 @@
 [ext_resource type="AudioStream" uid="uid://dpjdl8txsymnc" path="res://Audio/gasp.wav" id="11_qts0h"]
 [ext_resource type="AudioStream" uid="uid://chkihqu45pkfd" path="res://Audio/knock.wav" id="13_nhncv"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6gnjh"]
-sky_top_color = Color(1, 1, 1, 1)
-sky_horizon_color = Color(0.866545, 0.866545, 0.866545, 1)
-sky_energy_multiplier = 0.0
-ground_bottom_color = Color(0.466181, 0.466181, 0.466181, 1)
-ground_horizon_color = Color(0.866545, 0.866545, 0.866545, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_44tr1"]
+sky_top_color = Color(0.980702, 0.847884, 0.577559, 1)
+sky_horizon_color = Color(1.82522, 1.77258, 1.58855, 1)
+ground_bottom_color = Color(0.872654, 0.794919, 0.329137, 1)
+ground_horizon_color = Color(1.82522, 1.77258, 1.58855, 1)
+energy_multiplier = 0.7
 
-[sub_resource type="Sky" id="Sky_qjcl5"]
-sky_material = SubResource("ProceduralSkyMaterial_6gnjh")
+[sub_resource type="Sky" id="Sky_pmxqn"]
+sky_material = SubResource("ProceduralSkyMaterial_44tr1")
 
-[sub_resource type="Environment" id="Environment_saoa2"]
+[sub_resource type="Environment" id="Environment_gs5q7"]
 background_mode = 2
-sky = SubResource("Sky_qjcl5")
+sky = SubResource("Sky_pmxqn")
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
@@ -49,22 +48,21 @@ albedo_texture = ExtResource("10_kdxk5")
 size = Vector3(3.6709, 1.34094, 0.193359)
 
 [node name="Level" type="Node3D" groups=["Monster"]]
-script = ExtResource("1_btgq6")
-bg_music = ExtResource("10_xmbbb")
 
 [node name="Level_manager" type="Node" parent="." node_paths=PackedStringArray("monster")]
 script = ExtResource("3_c37yi")
+bg_music = ExtResource("10_xmbbb")
 monster = NodePath("../Monster")
 
 [node name="World Settings" type="Node" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World Settings"]
-environment = SubResource("Environment_saoa2")
+environment = SubResource("Environment_gs5q7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World Settings"]
-transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
-light_energy = 0.36
+transform = Transform3D(-0.358368, -0.53548, 0.764744, 0, 0.819152, 0.573576, -0.93358, 0.205551, -0.293558, 0, 0, 0)
 shadow_enabled = true
+directional_shadow_max_distance = 40.0
 
 [node name="UI" parent="." instance=ExtResource("1_akxwm")]
 offset_left = -1.0
