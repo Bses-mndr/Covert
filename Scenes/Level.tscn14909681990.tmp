@@ -48,6 +48,11 @@ size = Vector3(3.6709, 1.34094, 0.193359)
 
 [node name="Level" type="Node3D" groups=["Monster"]]
 
+[node name="Level_manager" type="Node" parent="." node_paths=PackedStringArray("monster")]
+script = ExtResource("3_c37yi")
+bg_music = ExtResource("10_xmbbb")
+monster = NodePath("../Monster")
+
 [node name="World Settings" type="Node" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World Settings"]
@@ -57,11 +62,6 @@ directional_shadow_max_distance = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World Settings"]
 environment = SubResource("Environment_gs5q7")
-
-[node name="Level_manager" type="Node" parent="World Settings" node_paths=PackedStringArray("monster")]
-script = ExtResource("3_c37yi")
-bg_music = ExtResource("10_xmbbb")
-monster = NodePath("../../Monster")
 
 [node name="UI" parent="." instance=ExtResource("1_akxwm")]
 offset_left = -1.0
@@ -114,6 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74959, -3.43758, 1.5883)
 [node name="Player" parent="." instance=ExtResource("1_2sbuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.58243, 1.01281, -2.14694)
 collision_layer = 3
+collision_mask = 3
 
 [node name="pickup_audio" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0190887, -0.351022, -0.0658219)

@@ -3,10 +3,10 @@ extends Node
 @export var bg_music: AudioStream
 @export var monster: CharacterBody3D
 @export var default_text = "Exploring..."
-var info_text
-var player
 var terrain
+var player
 var bgm
+var info_text
 
 func _ready():
 	get_node("/root/"+ get_tree().current_scene.name+"/Player/Head/Camera3D").current = true
@@ -20,12 +20,9 @@ func _ready():
 	info_text.text = default_text
 	bgm.stream = bg_music
 	bgm.play()
-	
-	await get_tree().create_timer(4,false).timeout
 	monster.spawn()
-
+	
 func _process(delta: float) -> void:
 	if info_text.text != default_text:
 		await get_tree().create_timer(2,false).timeout
 		info_text.text = default_text 
-	get_tree().call_group("Monster","update_target_location",player.global_transform.origin)

@@ -29,3 +29,17 @@ func interact():
 		$AnimationPlayer.play("locked")
 		await get_tree().create_timer(.4,false).timeout
 		interactable = true
+
+func enemy_interact():
+	
+	if interactable && get_parent().key == null:
+		interactable = false
+		if opened == false:
+			opened = true
+			$AnimationPlayer.play("open")
+		else:
+			opened = false
+			$AnimationPlayer.play("close")
+		$open_close.play()
+		await get_tree().create_timer(1,false).timeout
+		interactable = true

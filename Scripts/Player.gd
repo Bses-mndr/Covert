@@ -24,6 +24,7 @@ func _ready():
 	stamina_slider = get_node("/root/"+get_tree().current_scene.name+"/UI/Stamina")
 	fatigue_warn = get_node("/root/"+get_tree().current_scene.name+"/UI/Fatigued")
 	fatigue_warn.visible = false
+	self.set_collision_mask_value(2,true)
 
 func _process(delta: float) -> void:
 	if speed == run_speed && stamina >= stamina_slider.min_value:
