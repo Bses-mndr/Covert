@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func interact():
 	
-	if interactable && get_parent().key == null:
+	if interactable && get_parent().key == null: #Check if door is not already being used and if the player has key.
 		interactable = false
 		if opened == false:
 			#print("opening")
@@ -32,7 +32,7 @@ func interact():
 
 func enemy_interact():
 	
-	if interactable && get_parent().key == null:
+	if interactable && get_parent().key == null: #Same but for enemy.
 		interactable = false
 		if opened == false:
 			opened = true

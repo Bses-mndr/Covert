@@ -8,6 +8,6 @@ func _ready() -> void:
 
 func trigger_entered(body):
 	scare_sound.stream = audio_feedback
-	if body == get_node("/root/" + get_tree().current_scene.name + "/Player"):
+	if body == get_node("/root/" + get_tree().current_scene.name + "/Player"): # Plays audio when player enters the area.
 		scare_sound.play()
 		set_deferred("monitoring",false)

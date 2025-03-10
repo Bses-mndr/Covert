@@ -27,13 +27,13 @@ func _ready():
 	self.set_collision_mask_value(2,true)
 
 func _process(delta: float) -> void:
-	if speed == run_speed && stamina >= stamina_slider.min_value:
+	if speed == run_speed && stamina >= stamina_slider.min_value: # Decrease stamina when running.
 		stamina_slider.visible = true
 		stamina_tmp = stamina_slider.min_value
 		stamina -= stamina_drain * delta
 		stamina_slider.value = stamina
 	else:
-		if stamina < 5:
+		if stamina < 5: # Fatigue warning and cannot run.
 			fatigue_warn.visible = true
 			stamina = stamina_slider.min_value
 			stamina_tmp += stamina_drain * .4 * delta
@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 				stamina = stamina_tmp
 				fatigue_warn.visible = false
 		else:
-			if stamina <= stamina_slider.max_value:
+			if stamina <= stamina_slider.max_value: # Revitalizing stamina when not running.
 				stamina += stamina_drain * delta
 				stamina_slider.value = stamina
 	if stamina_slider.value == stamina_slider.max_value:
@@ -55,7 +55,6 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	if movable:
-		# Handle jump.
 		if Input.is_action_just_pressed("Jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 
@@ -66,7 +65,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 			
-			if Input.is_action_pressed("Sprint") && stamina > stamina_slider.min_value:
+			if Input.is_action_pressed("Sprint") && stamina > stamina_slider.min_value: # Run if there is stamina.
 				speed = run_speed
 			else:
 				speed = walk_speed

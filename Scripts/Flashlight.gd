@@ -13,7 +13,7 @@ const drain_rate = 1
 func _ready() -> void:
 	flash_batt = false
 	visible = false
-	flash_life_r = 0
+	flash_life_r = 0 #Rounding off flash_life value.
 	
 	info_text = get_node("/root/"+get_tree().current_scene.name+"/UI/Info")
 	flashlight_slider = get_node("/root/"+get_tree().current_scene.name+"/UI/Flashlight")
@@ -23,7 +23,7 @@ func _process(delta):
 	
 	if flash_batt:
 		flash_life_r = int(flash_life)
-		if flash_life_r % 5 == 0:
+		if flash_life_r % 5 == 0: #Discrete increment of UI slider.
 			flashlight_slider.value = flash_life_r
 		
 		if visible:
@@ -31,7 +31,7 @@ func _process(delta):
 		
 		#print(flash_life_r)
 		
-		if flash_life_r == flashlight_slider.min_value:
+		if flash_life_r == flashlight_slider.min_value: #Turning off flashlight when battery runs out.
 			flash_life_r = flashlight_slider.min_value
 			flashlight_slider.value = flash_life_r 
 			visible = false

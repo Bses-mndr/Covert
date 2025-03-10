@@ -40,11 +40,11 @@ func _ready():
 	rand_dest = rng.randi_range(0,(destination.size()-1))
 	current_dest = destination[rand_dest]
 
-func spawn():
+func spawn(): #No more use.
 	visible = true
 	is_spawn = true
 
-func pick_path():
+func pick_path(): #Pick random destination if not chasing.
 	if chase == false && available:
 		available = false
 		rotation.y = look_dir
@@ -53,7 +53,7 @@ func pick_path():
 		current_dest = destination[rand_dest]
 		available = true
 
-func decision():
+func decision(): #Chasing or Wandering?
 	if chase == false:
 		speed = walk
 		distance = current_dest.global_transform.origin.distance_to(global_transform.origin)
@@ -63,7 +63,7 @@ func decision():
 		distance = player.global_transform.origin.distance_to(global_transform.origin)
 		update_target_location(player.global_position)
 
-func is_stuck():
+func is_stuck(): #Err handling for when AI gets stuck on locked doors or random terrain.
 	if caught == false:
 		var temp_pos = global_position
 		await get_tree().create_timer(1,false).timeout
@@ -72,7 +72,7 @@ func is_stuck():
 
 
 func _process(delta: float) -> void:
-	if visible && !is_on_floor():
+	if visible && !is_on_floor(): #Path determination
 		velocity.y -= gravity * delta
 	
 	decision()
@@ -87,14 +87,12 @@ func _process(delta: float) -> void:
 	rotation.y = look_dir
 	
 	if chase:
-		if distance <= 2 && caught == false:
-			current_location = global_position
-			speed = 0
+		if distance <= 2 && caught == false: #Monster catching player.
 			caught = true
 			player.movable = false
 			player.visible = false
 			UI.visible = false
-			$Camera3D.current = true
+			$Camera3D.set_current(true)
 			
 			await get_tree().create_timer(jumpscare_time,false).timeout
 			get_tree().change_scene_to_file("res://Scenes/" + next_scene + ".tscn")
@@ -103,6 +101,6 @@ func update_target_location(target_location):
 	$NavigationAgent3D.target_position = target_location
 
 func velocity_computed(safe_velocity):
-	if is_spawn:
+	if is_spawn && caught == false:
 		velocity = velocity.move_toward(safe_velocity, 0.25)
 		move_and_slide()

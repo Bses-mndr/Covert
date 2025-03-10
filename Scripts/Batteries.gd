@@ -7,7 +7,7 @@ func _ready() -> void:
 	flashlight = get_node("/root/"+get_tree().current_scene.name+"/Player/Head/Flashlight")
 
 func interact():
-	if flashlight.flash_life < 100:
+	if flashlight.flash_life < 100: #If the flashlight battery is not full more power can be added.
 		flashlight.flash_batt = true
 		flashlight.flash_life += refill
 		if flashlight.flash_life > 100:
