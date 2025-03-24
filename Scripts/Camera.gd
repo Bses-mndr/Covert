@@ -15,11 +15,11 @@ func _input(event: InputEvent) -> void:
 		rotation.x = clamp(rotation.x,deg_to_rad(-90),deg_to_rad(90))
 
 func _process(delta: float) -> void:
-	if(Input.is_action_pressed("Sprint")): #Changing FOV when sprinting.
+	if(Input.is_action_pressed("Sprint") && player.speed == player.run_speed): #Changing FOV when sprinting.
 		if $Camera3D.fov <= 85:
 			$Camera3D.fov += delta*12
-			print($Camera3D.fov)
+			#print($Camera3D.fov)
 	else:
 		if $Camera3D.fov >= 75:
 			$Camera3D.fov -= delta*12
-			print($Camera3D.fov)
+			#print($Camera3D.fov)
