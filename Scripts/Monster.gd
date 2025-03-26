@@ -5,9 +5,10 @@ var run  = walk * 2
 var speed = walk
 var jumpscare_time = .85
 
-var is_spawn = false
+var is_spawn = true
 var caught = false
 var distance: float
+var is_thinking = false
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -38,20 +39,38 @@ func _ready():
 	available = true
 	rng  = RandomNumberGenerator.new()
 	rand_dest = rng.randi_range(0,(destination.size()-1))
+	temp_dest = rand_dest
 	current_dest = destination[rand_dest]
-
-func spawn(): #No more use.
-	visible = true
-	is_spawn = true
 
 func pick_path(): #Pick random destination if not chasing.
 	if chase == false && available:
+		is_thinking = true
 		available = false
 		rotation.y = look_dir
+		temp_dest = rand_dest
 		await get_tree().create_timer(2,false).timeout
 		rand_dest = rng.randi_range(0,destination.size()-1)
-		current_dest = destination[rand_dest]
-		available = true
+		
+		if destination.size() == 2:
+			if temp_dest:
+				temp_dest = 0
+			else:
+				temp_dest = 1
+			print("New Path Picked! of P2's")
+			current_dest = destination[temp_dest]
+			available = true
+			is_thinking = false
+			
+		else:
+			if temp_dest != rand_dest:
+				current_dest = destination[rand_dest]
+				print("New Path Picked! of P3's")
+				print(temp_dest," : ",rand_dest)
+				available = true
+				is_thinking = false
+			else:
+				available = true
+				pick_path()
 
 func decision(): #Chasing or Wandering?
 	if chase == false:
@@ -64,10 +83,11 @@ func decision(): #Chasing or Wandering?
 		update_target_location(player.global_position)
 
 func is_stuck(): #Err handling for when AI gets stuck on locked doors or random terrain.
-	if caught == false:
+	if caught == false && is_thinking == false:
 		var temp_pos = global_position
-		await get_tree().create_timer(1,false).timeout
+		await get_tree().create_timer(5,false).timeout
 		if(temp_pos == global_position):
+			print("Stuck!")
 			pick_path()
 
 
