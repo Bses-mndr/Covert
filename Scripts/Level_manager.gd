@@ -8,6 +8,7 @@ var env
 var player
 var bgm
 var info_text
+var score
 
 func _ready():
 	
@@ -27,7 +28,7 @@ func _ready():
 	bgm = get_node("/root/"+get_tree().current_scene.name+"/Audio/bg_audio")
 	info_text = get_node("/root/"+get_tree().current_scene.name+"/UI/Info")
 	
-	
+	score = 0
 	info_text.text = default_text
 	bgm.stream = bg_music
 	bgm.play()
@@ -35,4 +36,4 @@ func _ready():
 func _process(delta: float) -> void:
 	if info_text.text != default_text: #Looping / Clearing Info_Text to Default.
 		await get_tree().create_timer(2,false).timeout
-		info_text.text = default_text 
+		info_text.text = default_text

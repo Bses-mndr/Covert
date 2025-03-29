@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var walk = 1.5
+@export var walk = 2
 var run  = walk * 2
 var speed = walk
 var jumpscare_time = .85
@@ -9,11 +9,14 @@ var is_spawn = true
 var caught = false
 var distance: float
 var is_thinking = false
+var has_found = false
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var player
 var UI
+var found_text
+var interact_text
 
 var look_dir
 var chase
@@ -34,6 +37,7 @@ var temp_dest
 func _ready():
 	player = get_node("/root/"+ get_tree().current_scene.name+"/Player")
 	UI = get_node("/root/"+get_tree().current_scene.name+"/UI")
+	found_text = get_node("/root/"+get_tree().current_scene.name+"/UI/Found_you")
 	
 	chase = false
 	available = true
@@ -74,10 +78,20 @@ func pick_path(): #Pick random destination if not chasing.
 
 func decision(): #Chasing or Wandering?
 	if chase == false:
+		has_found = true
 		speed = walk
 		distance = current_dest.global_transform.origin.distance_to(global_transform.origin)
 		update_target_location(current_dest.global_position)
 	elif chase:
+		if has_found:
+			var flicker:int = rng.randi_range(1,4)
+			var i:int = 0
+			while i < flicker:
+				found_text.visible = true
+				await get_tree().create_timer(.25,false).timeout
+				found_text.visible = false
+				i += 1
+			has_found = false
 		speed = run
 		distance = player.global_transform.origin.distance_to(global_transform.origin)
 		update_target_location(player.global_position)
