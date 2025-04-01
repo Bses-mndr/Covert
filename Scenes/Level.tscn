@@ -46,7 +46,8 @@ size = Vector3(1, 4.65, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32npc"]
 emission_enabled = true
-emission = Color(1, 1, 1, 1)
+emission = Color(0.219608, 1, 0.662745, 1)
+emission_energy_multiplier = 10.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yyp3s"]
 size = Vector3(0.8, 2.2, 1.6)
@@ -72,7 +73,6 @@ size = Vector3(3.6709, 1.34094, 0.193359)
 script = ExtResource("3_c37yi")
 bg_music = ExtResource("10_xmbbb")
 monster = NodePath("../../Monsters/Monster")
-devmode = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World_Settings"]
 environment = SubResource("Environment_q24aw")
@@ -94,7 +94,7 @@ offset_right = -1.0
 offset_bottom = 5.0
 
 [node name="Finish" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90109, 4.10651, -4.36012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50697, 4.10651, -4.36012)
 script = ExtResource("4_32npc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Finish"]
@@ -230,6 +230,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.8125, 4.52737, -32.4027)
 
 [node name="Batteries3" parent="Batteries" instance=ExtResource("10_cu1ks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6823, 4.52737, -18.7648)
+
+[node name="Batteries4" parent="Batteries" instance=ExtResource("10_cu1ks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3408, 4.52737, -17.7648)
+
+[node name="Batteries5" parent="Batteries" instance=ExtResource("10_cu1ks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96539, 4.88881, -18.7642)
+
+[node name="Batteries6" parent="Batteries" instance=ExtResource("10_cu1ks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36518, 4.88881, -18.8233)
+
+[node name="Batteries7" parent="Batteries" instance=ExtResource("10_cu1ks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6293, 4.88881, -6.76078)
+
+[node name="Batteries8" parent="Batteries" instance=ExtResource("10_cu1ks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.6679, 4.74493, -22.4966)
 
 [node name="Keys" type="Node" parent="."]
 

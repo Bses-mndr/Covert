@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://csjtna1i7o3xc"]
+[gd_scene load_steps=7 format=4 uid="uid://csjtna1i7o3xc"]
 
 [ext_resource type="Script" uid="uid://b1q2qawsi263i" path="res://Scripts/Pickup_flashlight.gd" id="2_bfugq"]
 
@@ -39,6 +39,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yxhqn")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f3hi"]
+albedo_color = Color(0.728822, 0.728822, 0.728822, 1)
+metallic = 0.69
+roughness = 0.2
+
 [node name="Flashlight" type="StaticBody3D"]
 script = ExtResource("2_bfugq")
 
@@ -50,3 +55,4 @@ shape = SubResource("BoxShape3D_mh71y")
 transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.00183088, 0.00187214, 0.000675082)
 mesh = SubResource("ArrayMesh_hi8vu")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_6f3hi")
