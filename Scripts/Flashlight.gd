@@ -8,7 +8,7 @@ var flash_batt = false
 
 var flash_life
 var flash_life_r : int
-const drain_rate = .25
+const drain_rate = .5
 
 func _ready() -> void:
 	flash_batt = false

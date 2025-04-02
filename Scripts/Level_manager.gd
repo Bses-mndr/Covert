@@ -10,14 +10,22 @@ var bgm
 var info_text
 var score
 
+var database:SQLite
+
 func _ready():
+	
+	
+	database = SQLite.new()
+	database.path = "res://data.db"
+	database.open_db()
+	
 	
 	env = get_node("/root/"+get_tree().current_scene.name+"/World_Settings/WorldEnvironment")
 	if devmode:
 		$"../Camera3D".set_current(true)
 	else:
 		get_node("/root/"+ get_tree().current_scene.name+"/Player/Head/Camera3D").set_current(true)
-		env.environment.background_energy_multiplier = 1.5
+		env.environment.background_energy_multiplier = 1
 		get_node("/root/"+get_tree().current_scene.name+"/NavigationRegion3D/level_1/Ceiling").visible = true
 		get_node("/root/"+get_tree().current_scene.name+"/NavigationRegion3D/level_1/Level Barriers").visible = true
 	

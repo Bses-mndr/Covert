@@ -45,6 +45,7 @@ func _ready():
 	rand_dest = rng.randi_range(0,(destination.size()-1))
 	temp_dest = rand_dest
 	current_dest = destination[rand_dest]
+	print(current_dest.global_transform.origin)
 
 func pick_path(): #Pick random destination if not chasing.
 	if chase == false && available:

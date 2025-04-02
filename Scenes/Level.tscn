@@ -265,16 +265,16 @@ transform = Transform3D(0.0578775, 0, 0.998324, 0, 1, 0, -0.998324, 0, 0.0578775
 
 [node name="Papers" type="Node" parent="."]
 
-[node name="Paper" parent="Papers" instance=ExtResource("9_d0txq")]
+[node name="Tut1" parent="Papers" instance=ExtResource("9_d0txq")]
 transform = Transform3D(0.277947, 0, 0.112896, 0, 0.3, 0, -0.112896, 0, 0.277947, -26.479, 4.52102, -32.4349)
 
-[node name="Paper2" parent="Papers" instance=ExtResource("9_d0txq")]
-transform = Transform3D(-0.189243, 0, 0.232781, 0, 0.3, 0, -0.232781, 0, -0.189243, -20.6092, 4.52102, -18.1841)
-
-[node name="Paper_floor" parent="Papers" instance=ExtResource("9_d0txq")]
+[node name="Tut2" parent="Papers" instance=ExtResource("9_d0txq")]
 transform = Transform3D(0.194404, 0, 0.228489, 0, 0.3, 0, -0.228489, 0, 0.194404, -23.846, 3.5, -31.627)
 paper_material = SubResource("StandardMaterial3D_jafe4")
 paper_ui = ExtResource("10_kdxk5")
+
+[node name="Idk" parent="Papers" instance=ExtResource("9_d0txq")]
+transform = Transform3D(-0.189243, 0, 0.232781, 0, 0.3, 0, -0.232781, 0, -0.189243, -20.6092, 4.52102, -18.1841)
 
 [node name="Triggers" type="Node" parent="."]
 
