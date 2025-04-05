@@ -159,26 +159,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82908, 4.5, -11.7358)
 [node name="Monster1" parent="Monsters" instance=ExtResource("6_6bkf4")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -27.391, 4.45, -17.7217)
 safe_margin = 0.01
+walk = null
 next_scene = "Death"
 
 [node name="Monster2" parent="Monsters" instance=ExtResource("6_6bkf4")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.5459, 4.45, -29.6803)
 safe_margin = 0.01
+walk = null
 next_scene = "Death"
 
 [node name="Monster3" parent="Monsters" instance=ExtResource("6_6bkf4")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -27.0275, 4.45, 4.64428)
 safe_margin = 0.01
+walk = null
 next_scene = "Death"
 
 [node name="Monster4" parent="Monsters" instance=ExtResource("6_6bkf4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.6158, 4.45, 9.7222)
 safe_margin = 0.01
+walk = null
 next_scene = "Death"
 
 [node name="Monster5" parent="Monsters" instance=ExtResource("6_6bkf4")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6.74631, 4.45, -28.9193)
 safe_margin = 0.01
+walk = null
 next_scene = "Death"
 
 [node name="Doors" type="Node" parent="."]
@@ -303,6 +308,63 @@ max_db = 2.0
 [node name="bg_audio" type="AudioStreamPlayer3D" parent="Audio"]
 volume_db = 10.0
 pitch_scale = 0.85
+
+[node name="Destinations" type="Node" parent="."]
+
+[node name="e1" type="Node" parent="Destinations"]
+
+[node name="dest1" type="Node3D" parent="Destinations/e1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.3777, 4.45, -20.8259)
+
+[node name="dest2" type="Node3D" parent="Destinations/e1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2753, 4.45, -11.2684)
+
+[node name="e2" type="Node" parent="Destinations"]
+
+[node name="dest1" type="Node3D" parent="Destinations/e2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5751, 4.45, -32.1856)
+
+[node name="dest2" type="Node3D" parent="Destinations/e2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6261, 4.45, -20.0907)
+
+[node name="dest3" type="Node3D" parent="Destinations/e2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89289, 4.45, -32.3828)
+
+[node name="e3" type="Node" parent="Destinations"]
+
+[node name="dest1" type="Node3D" parent="Destinations/e3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1536, 4.45, 2.10819)
+
+[node name="dest2" type="Node3D" parent="Destinations/e3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4135, 4.45, 3.28266)
+
+[node name="dest3" type="Node3D" parent="Destinations/e3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0516, 4.45, 3.66823)
+
+[node name="e4" type="Node" parent="Destinations"]
+
+[node name="dest1" type="Node3D" parent="Destinations/e4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.02637, 4.45, 9.71601)
+
+[node name="dest2" type="Node3D" parent="Destinations/e4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9019, 4.45, 6.69879)
+
+[node name="dest3" type="Node3D" parent="Destinations/e4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30766, 4.45, 3.86059)
+
+[node name="e5" type="Node" parent="Destinations"]
+
+[node name="dest1" type="Node3D" parent="Destinations/e5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.35384, 4.45, -28.7272)
+
+[node name="dest2" type="Node3D" parent="Destinations/e5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.63155, 4.45, -21.3025)
+
+[node name="dest3" type="Node3D" parent="Destinations/e5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.70182, 4.45, -14.2465)
+
+[node name="dest4" type="Node3D" parent="Destinations/e5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.70222, 4.45, -25.0191)
 
 [connection signal="body_entered" from="Finish" to="Finish" method="_on_body_entered"]
 [connection signal="body_entered" from="Triggers/Scare_trigger_gasp" to="Triggers/Scare_trigger_gasp" method="trigger_entered"]

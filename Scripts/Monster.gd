@@ -12,6 +12,9 @@ var is_thinking = false
 var has_found = false
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var database:SQLite
+var m_id:String
+var destination:Array[Array]
 
 var player
 var UI
@@ -32,9 +35,17 @@ var current_dest
 var temp_dest
 
 @export var next_scene : String
-@export var destination : Array[Node3D]
 
 func _ready():
+	
+	
+	m_id = name.trim_prefix("Monster")
+	database = get_node("/root/"+get_tree().current_scene.name+"/World_Settings/Level_manager").database
+	var res = database.select_rows("Destinations", "m_id = '" + m_id + "'", ["x","y","z"])
+	for r in res:
+		destination.append(r.values())
+	
+	
 	player = get_node("/root/"+ get_tree().current_scene.name+"/Player")
 	UI = get_node("/root/"+get_tree().current_scene.name+"/UI")
 	found_text = get_node("/root/"+get_tree().current_scene.name+"/UI/Found_you")
@@ -45,7 +56,8 @@ func _ready():
 	rand_dest = rng.randi_range(0,(destination.size()-1))
 	temp_dest = rand_dest
 	current_dest = destination[rand_dest]
-	print(current_dest.global_transform.origin)
+	current_dest = Vector3(current_dest[0],current_dest[1],current_dest[2])
+	print(current_dest)
 
 func pick_path(): #Pick random destination if not chasing.
 	if chase == false && available:
@@ -62,13 +74,15 @@ func pick_path(): #Pick random destination if not chasing.
 			else:
 				temp_dest = 1
 			print("New Path Picked! of P2's")
-			current_dest = destination[temp_dest]
+			current_dest = destination[rand_dest]
+			current_dest = Vector3(current_dest[0],current_dest[1],current_dest[2])
 			available = true
 			is_thinking = false
 			
 		else:
 			if temp_dest != rand_dest:
 				current_dest = destination[rand_dest]
+				current_dest = Vector3(current_dest[0],current_dest[1],current_dest[2])
 				print("New Path Picked! of P3's")
 				print(temp_dest," : ",rand_dest)
 				available = true
@@ -81,9 +95,12 @@ func decision(): #Chasing or Wandering?
 	if chase == false:
 		has_found = true
 		speed = walk
-		distance = current_dest.global_transform.origin.distance_to(global_transform.origin)
-		update_target_location(current_dest.global_position)
+		distance = current_dest.distance_to(global_transform.origin)
+		update_target_location(current_dest)
 	elif chase:
+		speed = run
+		distance = player.global_transform.origin.distance_to(global_transform.origin)
+		update_target_location(player.global_position)
 		if has_found:
 			var flicker:int = rng.randi_range(1,4)
 			var i:int = 0
@@ -93,9 +110,6 @@ func decision(): #Chasing or Wandering?
 				found_text.visible = false
 				i += 1
 			has_found = false
-		speed = run
-		distance = player.global_transform.origin.distance_to(global_transform.origin)
-		update_target_location(player.global_position)
 
 func is_stuck(): #Err handling for when AI gets stuck on locked doors or random terrain.
 	if caught == false && is_thinking == false:
