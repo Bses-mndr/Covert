@@ -87,11 +87,10 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_57tj0")
 
 [node name="Paper" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 385.0
+offset_left = 307.0
 offset_top = 23.0
-offset_right = 831.0
+offset_right = 753.0
 offset_bottom = 631.0
 texture = ExtResource("2_udowh")
 expand_mode = 1
@@ -118,3 +117,13 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Note" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 68.0
+offset_right = 1136.0
+offset_bottom = 635.0
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("1_03lwh")
+theme_override_font_sizes/normal_font_size = 25

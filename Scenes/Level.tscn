@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://03gx3ieso84q"]
+[gd_scene load_steps=26 format=3 uid="uid://03gx3ieso84q"]
 
 [ext_resource type="PackedScene" uid="uid://b5ow6stuq2511" path="res://Scenes/Player.tscn" id="1_2sbuk"]
 [ext_resource type="PackedScene" uid="uid://cbdaxatvlra0l" path="res://Scenes/UI.tscn" id="1_akxwm"]
 [ext_resource type="Script" uid="uid://dtgpqgmadlfjl" path="res://Scripts/Level_manager.gd" id="3_c37yi"]
 [ext_resource type="PackedScene" uid="uid://csjtna1i7o3xc" path="res://SceneObjects/Flashlight.tscn" id="3_qtjse"]
+[ext_resource type="PackedScene" uid="uid://ctltj3k53obn0" path="res://Scenes/Pause_menu.tscn" id="3_yyp3s"]
 [ext_resource type="Script" uid="uid://c5gat81bonhow" path="res://Scripts/Finish.gd" id="4_32npc"]
 [ext_resource type="PackedScene" uid="uid://dwkhdca35n83w" path="res://Levels/level_1.tscn" id="4_44tr1"]
 [ext_resource type="PackedScene" uid="uid://vm7qtoxvqk4n" path="res://SceneObjects/Door.tscn" id="4_hi4pj"]
@@ -15,12 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://5n5qkb0cvs46" path="res://SceneObjects/Cupboard.tscn" id="7_32npc"]
 [ext_resource type="PackedScene" uid="uid://c4lu4dv4kntq6" path="res://SceneObjects/Paper.tscn" id="9_d0txq"]
 [ext_resource type="PackedScene" uid="uid://ccy2lkldtmyu8" path="res://SceneObjects/Batteries.tscn" id="10_cu1ks"]
-[ext_resource type="Texture2D" uid="uid://7iv6w4t2obwx" path="res://Materials/Random.jpg" id="10_kdxk5"]
-[ext_resource type="Script" uid="uid://bt1318cqtutqd" path="res://Scripts/Scare_trigger.gd" id="10_ohqbn"]
 [ext_resource type="AudioStream" uid="uid://dcxmiiiu27uj7" path="res://Audio/bg.wav" id="10_xmbbb"]
-[ext_resource type="AudioStream" uid="uid://dpjdl8txsymnc" path="res://Audio/gasp.wav" id="11_qts0h"]
 [ext_resource type="PackedScene" uid="uid://co6syxaq2r418" path="res://SceneObjects/Orb.tscn" id="12_yyp3s"]
-[ext_resource type="AudioStream" uid="uid://chkihqu45pkfd" path="res://Audio/knock.wav" id="13_nhncv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxqn"]
 sky_top_color = Color(0.308484, 0.294242, 0.187428, 1)
@@ -59,12 +56,6 @@ cell_size = 0.1
 cell_height = 0.1
 agent_radius = 0.35
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jafe4"]
-albedo_texture = ExtResource("10_kdxk5")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6eq3d"]
-size = Vector3(3.6709, 1.34094, 0.193359)
-
 [node name="Level" type="Node3D" groups=["Monster"]]
 
 [node name="World_Settings" type="Node" parent="."]
@@ -93,11 +84,14 @@ offset_top = 5.0
 offset_right = -1.0
 offset_bottom = 5.0
 
+[node name="Pause_menu" parent="." instance=ExtResource("3_yyp3s")]
+
 [node name="Finish" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50697, 4.10651, -4.36012)
 script = ExtResource("4_32npc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Finish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707471, 0, 0)
 mesh = SubResource("BoxMesh_q24aw")
 surface_material_override/0 = SubResource("StandardMaterial3D_32npc")
 
@@ -110,7 +104,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8273, 3.43758, -10.7695)
 navigation_mesh = SubResource("NavigationMesh_44tr1")
 use_edge_connections = false
 
-[node name="level_1" parent="NavigationRegion3D" instance=ExtResource("4_44tr1")]
+[node name="Level_1" parent="NavigationRegion3D" instance=ExtResource("4_44tr1")]
 
 [node name="Table1" parent="NavigationRegion3D" instance=ExtResource("5_pmxqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.865, -0.01, -21.5)
@@ -138,7 +132,7 @@ volume_db = 5.0
 pitch_scale = 0.85
 
 [node name="Flashlight" parent="." instance=ExtResource("3_qtjse")]
-transform = Transform3D(0.854196, 0.13101, 0.503176, -0.114351, 0.991377, -0.063998, -0.507221, -0.00287191, 0.861811, -27.2225, 4.58684, -32.4648)
+transform = Transform3D(0.854196, 0.13101, 0.503176, -0.114351, 0.991377, -0.063998, -0.507221, -0.00287191, 0.861811, -27.0604, 4.58684, -32.264)
 
 [node name="Orbs" type="Node" parent="."]
 
@@ -218,10 +212,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.2733
 [node name="Batteries" type="Node" parent="."]
 
 [node name="Batteries" parent="Batteries" instance=ExtResource("10_cu1ks")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.8869, 4.52737, -32.5372)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6351, 4.52737, -31.781)
 
 [node name="Batteries2" parent="Batteries" instance=ExtResource("10_cu1ks")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.8125, 4.52737, -32.4027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4692, 4.52737, -31.6931)
 
 [node name="Batteries3" parent="Batteries" instance=ExtResource("10_cu1ks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6823, 4.52737, -18.7648)
@@ -244,10 +238,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.6679, 4.74493, -22.4966)
 [node name="Keys" type="Node" parent="."]
 
 [node name="Key" parent="Keys" instance=ExtResource("5_pwaij")]
-transform = Transform3D(0.828471, 0, 0.560032, 0, 1, 0, -0.560032, 0, 0.828471, -25.7287, 4.54678, -32.3235)
+transform = Transform3D(0.828471, 0, 0.560032, 0, 1, 0, -0.560032, 0, 0.828471, -25.8516, 4.54678, -32.0741)
 
 [node name="Key2" parent="Keys" instance=ExtResource("5_pwaij")]
-transform = Transform3D(0.828471, 0, 0.560032, 0, 1, 0, -0.560032, 0, 0.828471, -20.5269, 4.54678, -19.2907)
+transform = Transform3D(0.373409, 0, 0.927667, 0, 1, 0, -0.927667, 0, 0.373409, -20.6425, 4.54678, -19.2947)
 
 [node name="Key3" parent="Keys" instance=ExtResource("5_pwaij")]
 transform = Transform3D(0.828471, 0, 0.560032, 0, 1, 0, -0.560032, 0, 0.828471, -21.91, 4.755, -22.203)
@@ -261,37 +255,13 @@ transform = Transform3D(0.0578775, 0, 0.998324, 0, 1, 0, -0.998324, 0, 0.0578775
 [node name="Papers" type="Node" parent="."]
 
 [node name="Tut1" parent="Papers" instance=ExtResource("9_d0txq")]
-transform = Transform3D(0.277947, 0, 0.112896, 0, 0.3, 0, -0.112896, 0, 0.277947, -26.479, 4.52102, -32.4349)
+transform = Transform3D(0.143741, 0, 0.263322, 0, 0.3, 0, -0.263322, 0, 0.143741, -26.4946, 4.51708, -32.2062)
 
 [node name="Tut2" parent="Papers" instance=ExtResource("9_d0txq")]
 transform = Transform3D(0.194404, 0, 0.228489, 0, 0.3, 0, -0.228489, 0, 0.194404, -23.846, 3.5, -31.627)
-paper_material = SubResource("StandardMaterial3D_jafe4")
-paper_ui = ExtResource("10_kdxk5")
 
-[node name="Idk" parent="Papers" instance=ExtResource("9_d0txq")]
-transform = Transform3D(-0.189243, 0, 0.232781, 0, 0.3, 0, -0.232781, 0, -0.189243, -20.6092, 4.52102, -18.1841)
-
-[node name="Triggers" type="Node" parent="."]
-
-[node name="Scare_trigger_gasp" type="Area3D" parent="Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9952, 2.38419e-07, -3.36012)
-visible = false
-script = ExtResource("10_ohqbn")
-audio_feedback = ExtResource("11_qts0h")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Scare_trigger_gasp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196769, 0.658876, -0.0489879)
-shape = SubResource("BoxShape3D_6eq3d")
-
-[node name="Scare_trigger_knock" type="Area3D" parent="Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.26527, 2.38419e-07, -7.88631)
-visible = false
-script = ExtResource("10_ohqbn")
-audio_feedback = ExtResource("13_nhncv")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Scare_trigger_knock"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196769, 0.644881, -0.0489879)
-shape = SubResource("BoxShape3D_6eq3d")
+[node name="i1" parent="Papers" instance=ExtResource("9_d0txq")]
+transform = Transform3D(-0.189243, 0, 0.232781, 0, 0.3, 0, -0.232781, 0, -0.189243, -20.6544, 4.52102, -18.1137)
 
 [node name="Audio" type="Node" parent="."]
 
@@ -305,5 +275,3 @@ volume_db = 10.0
 pitch_scale = 0.85
 
 [connection signal="body_entered" from="Finish" to="Finish" method="_on_body_entered"]
-[connection signal="body_entered" from="Triggers/Scare_trigger_gasp" to="Triggers/Scare_trigger_gasp" method="trigger_entered"]
-[connection signal="body_entered" from="Triggers/Scare_trigger_knock" to="Triggers/Scare_trigger_knock" method="trigger_entered"]

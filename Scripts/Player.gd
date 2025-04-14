@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+var player_name
+
 var crosshair
 var movable = true
 

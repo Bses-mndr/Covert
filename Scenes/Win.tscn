@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://wknmlsvgisco"]
+[gd_scene load_steps=3 format=3 uid="uid://wknmlsvgisco"]
 
 [ext_resource type="FontFile" uid="uid://dm1htfdjtb7dr" path="res://Fonts/Dutch.ttf" id="1_3vusp"]
+[ext_resource type="Script" uid="uid://rba54qunjlg2" path="res://Scripts/win.gd" id="1_jo0u0"]
 
 [node name="Death Scene" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jo0u0")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -16,7 +18,7 @@ offset_right = 1153.0
 offset_bottom = 650.0
 color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 
-[node name="You Died" type="RichTextLabel" parent="."]
+[node name="You Win" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 321.0
 offset_top = 250.0

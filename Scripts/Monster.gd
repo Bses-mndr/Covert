@@ -45,7 +45,6 @@ func _ready():
 	for r in res:
 		destination.append(r.values())
 	
-	
 	player = get_node("/root/"+ get_tree().current_scene.name+"/Player")
 	UI = get_node("/root/"+get_tree().current_scene.name+"/UI")
 	found_text = get_node("/root/"+get_tree().current_scene.name+"/UI/Found_you")
@@ -137,6 +136,12 @@ func _process(delta: float) -> void:
 	
 	if chase:
 		if distance <= 2 && caught == false: #Monster catching player.
+			get_node("/root/"+get_tree().current_scene.name+"/World_Settings/Level_manager").stopped = true
+			var death = database.select_rows("Players","",["death"])
+			for i in death:
+				i = i.values()
+				var res = i[0] + 1
+				database.query("UPDATE Players SET death = " + str(res))
 			caught = true
 			player.movable = false
 			player.visible = false

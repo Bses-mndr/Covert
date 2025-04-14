@@ -1,24 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4lu4dv4kntq6"]
+[gd_scene load_steps=4 format=3 uid="uid://c4lu4dv4kntq6"]
 
 [ext_resource type="Script" uid="uid://bfqnlugea3lwg" path="res://Scripts/Paper.gd" id="1_3g1mj"]
-[ext_resource type="Material" uid="uid://ddhhgmhwgdrvu" path="res://Materials/paper.tres" id="2_eui5p"]
-[ext_resource type="Texture2D" uid="uid://blu6qkjjeu1wh" path="res://Materials/Blade of Miquella (2).jpg" id="3_heyxl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tb48q"]
-size = Vector3(1.56543, 0.254883, 1.94531)
+size = Vector3(1.63843, 0.255798, 2.04395)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ml1d7"]
 
 [node name="Paper" type="StaticBody3D"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("1_3g1mj")
-paper_material = ExtResource("2_eui5p")
-paper_ui = ExtResource("3_heyxl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0.098822, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.116196, 0)
 shape = SubResource("BoxShape3D_tb48q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.799851, 0, 0, 0, 0.999813, 0, 0, 0, 0.999813, 0, 0, 0)
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("PlaneMesh_ml1d7")

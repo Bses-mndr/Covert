@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://8x1bfpm6fg2b"]
+
+[ext_resource type="PackedScene" uid="uid://dkrx0lpr2a7od" path="res://SceneObjects/Input_map.tscn" id="1_sqj42"]
+[ext_resource type="Script" uid="uid://csqqvd2mrwwmr" path="res://Scripts/input_settings.gd" id="1_up6if"]
+
+[node name="InputSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_up6if")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -494.0
+offset_top = -256.0
+offset_right = 494.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Input Map" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("1_sqj42")]
+layout_mode = 2

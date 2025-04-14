@@ -40,7 +40,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kdekj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55hp0"]
-albedo_color = Color(1, 0.724, 0.54, 1)
 metallic = 0.65
 roughness = 0.15
 rim_enabled = true

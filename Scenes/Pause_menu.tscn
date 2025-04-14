@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctltj3k53obn0"]
+
+[ext_resource type="Script" uid="uid://kb64pmbjjqm8" path="res://Scripts/Pause.gd" id="1_emv3i"]
+
+[node name="Pause_menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_emv3i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -204.0
+offset_right = 202.0
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.419608)
+
+[node name="Resume" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -127.0
+offset_right = 136.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -31.0
+offset_right = 136.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[node name="QuitGame" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = 66.0
+offset_right = 136.0
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit Game"
+
+[connection signal="pressed" from="ColorRect/Resume" to="." method="resume_game"]
+[connection signal="pressed" from="ColorRect/MainMenu" to="." method="main_menu"]
+[connection signal="pressed" from="ColorRect/QuitGame" to="." method="quit_game"]
