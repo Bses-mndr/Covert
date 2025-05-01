@@ -1,6 +1,7 @@
 extends Control
 
 var database:SQLite
+var player
 
 func start_game():
 	get_tree().change_scene_to_file("res://Scenes/Level.tscn")
@@ -26,6 +27,8 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _process(delta: float) -> void:
+	
+	player = $MainScreen/PlayerName.text
 	if Input.is_action_just_pressed("Pause"):
 		$MainScreen.visible = true
 		$InputSettings.visible = false

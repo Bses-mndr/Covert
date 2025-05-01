@@ -43,7 +43,6 @@ shadow_mesh = SubResource("ArrayMesh_l7g18")
 albedo_color = Color(0.699, 1, 0.57, 1)
 metallic = 0.65
 roughness = 0.25
-rim_enabled = true
 
 [node name="Batteries" type="StaticBody3D"]
 script = ExtResource("1_7agpn")

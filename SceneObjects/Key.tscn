@@ -40,9 +40,9 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kdekj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55hp0"]
+albedo_color = Color(0.92, 0.872467, 0.3496, 1)
 metallic = 0.65
 roughness = 0.15
-rim_enabled = true
 
 [node name="Key" type="StaticBody3D"]
 script = ExtResource("2_34cxx")

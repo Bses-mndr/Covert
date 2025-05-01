@@ -31,7 +31,7 @@ func _ready():
 		$"../Camera3D".set_current(true)
 	else:
 		get_node("/root/"+ get_tree().current_scene.name+"/Player/Head/Camera3D").set_current(true)
-		env.environment.background_energy_multiplier = 1
+		env.environment.background_energy_multiplier = 1.5
 		get_node("/root/"+get_tree().current_scene.name+"/NavigationRegion3D/Level_1/Ceiling").visible = true
 		get_node("/root/"+get_tree().current_scene.name+"/NavigationRegion3D/Level_1/Level Barriers").visible = true
 	

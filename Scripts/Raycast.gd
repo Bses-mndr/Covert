@@ -3,7 +3,7 @@ extends RayCast3D
 var interact_label
 
 func _ready() -> void:
-	interact_label = get_node("/root/"+ get_tree().current_scene.name + "/UI/Interact")
+	interact_label = get_node("/root/"+ get_tree().current_scene.name + "/UI/Crosshair")
 	interact_label.visible = false
 
 func _process(delta: float) -> void:

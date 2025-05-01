@@ -8,4 +8,5 @@ func _process(delta: float) -> void:
 		hit = get_collider()
 		if hit != null:
 			if hit.has_method("enemy_interact"): # Checks if the collider has method.
-				hit.enemy_interact()
+				if !hit.opened:
+					hit.enemy_interact()
