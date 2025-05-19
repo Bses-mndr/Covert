@@ -1,7 +1,7 @@
 extends RayCast3D
 var hit
 var count
-@export var chase_time = 3.5
+@export var chase_time = 5
 func _ready() -> void:
 	count = chase_time
 	

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkrx0lpr2a7od"]
 
-[ext_resource type="FontFile" uid="uid://dm1htfdjtb7dr" path="res://Fonts/Dutch.ttf" id="1_67apf"]
+[ext_resource type="FontFile" uid="uid://b8xvgiurjt6uv" path="res://Fonts/Onest-SemiBold.ttf" id="1_skrwx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k45w"]
 bg_color = Color(1, 1, 1, 0.392157)
@@ -38,7 +38,7 @@ alignment = 1
 [node name="Action" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("1_67apf")
+theme_override_fonts/font = ExtResource("1_skrwx")
 theme_override_font_sizes/font_size = 35
 text = "Action Name"
 vertical_alignment = 1
@@ -51,7 +51,7 @@ mouse_filter = 1
 [node name="KeyInput" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource("1_67apf")
+theme_override_fonts/font = ExtResource("1_skrwx")
 theme_override_font_sizes/font_size = 35
 text = "Input Key"
 vertical_alignment = 1

@@ -37,6 +37,8 @@ tonemap_mode = 4
 tonemap_exposure = 0.5
 ssao_enabled = true
 glow_enabled = true
+fog_enabled = true
+volumetric_fog_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_q24aw"]
 size = Vector3(1, 4.65, 3)
@@ -60,10 +62,9 @@ agent_radius = 0.35
 
 [node name="World_Settings" type="Node" parent="."]
 
-[node name="Level_manager" type="Node" parent="World_Settings" node_paths=PackedStringArray("monster")]
+[node name="Level_manager" type="Node" parent="World_Settings"]
 script = ExtResource("3_c37yi")
 bg_music = ExtResource("10_xmbbb")
-monster = NodePath("../../Monsters/Monster1")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World_Settings"]
 environment = SubResource("Environment_q24aw")
@@ -91,7 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50697, 4.10651, -4.36012)
 script = ExtResource("4_32npc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Finish"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707471, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0682721, 0, 0)
 mesh = SubResource("BoxMesh_q24aw")
 surface_material_override/0 = SubResource("StandardMaterial3D_32npc")
 
@@ -112,8 +113,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.865, -0.01, -21.5)
 [node name="Table2" parent="NavigationRegion3D" instance=ExtResource("5_pmxqn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.9607, -0.00999999, -7.62624)
 
-[node name="Drawer" parent="NavigationRegion3D" instance=ExtResource("6_q24aw")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.0796, 2.38419e-07, -11.3426)
+[node name="Drawer" parent="NavigationRegion3D" node_paths=PackedStringArray("child") instance=ExtResource("6_q24aw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.0796, 2.38419e-07, -11.354)
+child = NodePath("../../Keys/Key3")
 
 [node name="Cupboard" parent="NavigationRegion3D" instance=ExtResource("7_32npc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69442, 1.345, -8.19093)
@@ -182,7 +184,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.563, 3.4734, -25.7804)
 key = NodePath("../../Keys/Key")
 
 [node name="Door2" parent="Doors" node_paths=PackedStringArray("key") instance=ExtResource("4_hi4pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5427, 3.4734, -14.4304)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5427, 3.4734, -15.5055)
 key = NodePath("../../Keys/Key3")
 
 [node name="Door3" parent="Doors" node_paths=PackedStringArray("key") instance=ExtResource("4_hi4pj")]
@@ -244,7 +246,7 @@ transform = Transform3D(0.828471, 0, 0.560032, 0, 1, 0, -0.560032, 0, 0.828471, 
 transform = Transform3D(0.373409, 0, 0.927667, 0, 1, 0, -0.927667, 0, 0.373409, -20.6425, 4.54678, -19.2947)
 
 [node name="Key3" parent="Keys" instance=ExtResource("5_pwaij")]
-transform = Transform3D(0.828471, 0, 0.560032, 0, 1, 0, -0.560032, 0, 0.828471, -21.91, 4.755, -22.203)
+transform = Transform3D(0.193755, 0, 0.98105, 0, 1, 0, -0.98105, 0, 0.193755, -21.9374, 4.09866, -22.5015)
 
 [node name="Key4" parent="Keys" instance=ExtResource("5_pwaij")]
 transform = Transform3D(0.0578775, 0, 0.998324, 0, 1, 0, -0.998324, 0, 0.0578775, -2.17613, 4.92158, -18.8957)

@@ -2,8 +2,10 @@ extends Control
 
 var database:SQLite
 var player
+var playerName
 
 func start_game():
+	
 	get_tree().change_scene_to_file("res://Scenes/Level.tscn")
 
 func quit_game():
@@ -25,10 +27,11 @@ func _ready() -> void:
 	
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-func _process(delta: float) -> void:
 	
-	player = $MainScreen/PlayerName.text
+	$MainScreen/PlayerName.text = AutoLoad.player_name
+	
+func _process(delta: float) -> void:
+
 	if Input.is_action_just_pressed("Pause"):
 		$MainScreen.visible = true
 		$InputSettings.visible = false

@@ -27,7 +27,7 @@ func interact():
 		interactable = false
 		$locked.play()
 		$AnimationPlayer.play("locked")
-		await get_tree().create_timer(.4,false).timeout
+		await get_tree().create_timer(1,false).timeout
 		interactable = true
 
 func enemy_interact():

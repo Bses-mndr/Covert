@@ -40,9 +40,12 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yxhqn")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f3hi"]
-albedo_color = Color(0.728822, 0.728822, 0.728822, 1)
-metallic = 0.69
-roughness = 0.2
+albedo_color = Color(0.82606, 0.82606, 0.82606, 1)
+metallic = 0.66
+roughness = 0.4
+rim_enabled = true
+backlight_enabled = true
+backlight = Color(0.493546, 0.493545, 0.493546, 1)
 
 [node name="Flashlight" type="StaticBody3D"]
 script = ExtResource("2_bfugq")

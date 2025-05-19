@@ -1,7 +1,6 @@
 extends Node
 
 @export var bg_music: AudioStream
-@export var monster: CharacterBody3D
 @export var default_text = "Exploring..."
 @export var devmode = false  
 var env
@@ -31,7 +30,7 @@ func _ready():
 		$"../Camera3D".set_current(true)
 	else:
 		get_node("/root/"+ get_tree().current_scene.name+"/Player/Head/Camera3D").set_current(true)
-		env.environment.background_energy_multiplier = 1.5
+		env.environment.background_energy_multiplier = .75
 		get_node("/root/"+get_tree().current_scene.name+"/NavigationRegion3D/Level_1/Ceiling").visible = true
 		get_node("/root/"+get_tree().current_scene.name+"/NavigationRegion3D/Level_1/Level Barriers").visible = true
 	
@@ -53,7 +52,8 @@ func _process(delta: float) -> void:
 		stopwatch += delta 
 	else:
 		var time = int(stopwatch)+int(old_time)
-		database.query("UPDATE Players SET time = " + str(time))
+		#database.query("UPDATE Players SET time = " + str(time) + "WHERE name = '" + str(AutoLoad.player_name) + "'" )
+		database.update_rows("Players","name = '" + str(AutoLoad.player_name) + "'", {"time" : time})
 		stopped = true
 	
 	if info_text.text != default_text: #Looping / Clearing Info_Text to Default.

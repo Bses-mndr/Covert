@@ -1,7 +1,10 @@
 extends Control
 
+var shader
+
 func _ready() -> void:
 	visible = false
+	shader = get_node("/root/"+get_tree().current_scene.name+"/UI/Shaders")
 
 func resume_game():
 	get_tree().paused = false

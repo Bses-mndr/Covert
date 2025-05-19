@@ -137,11 +137,12 @@ func _process(delta: float) -> void:
 	if chase:
 		if distance <= 2 && caught == false: #Monster catching player.
 			get_node("/root/"+get_tree().current_scene.name+"/World_Settings/Level_manager").stopped = true
-			var death = database.select_rows("Players","",["death"])
+			var death = database.select_rows("Players","name = '" + AutoLoad.player_name + "'" ,["death"])
 			for i in death:
 				i = i.values()
 				var res = i[0] + 1
-				database.query("UPDATE Players SET death = " + str(res))
+				#database.query("UPDATE Players SET death = " + str(res) + "WHERE name = '" + str(AutoLoad.player_name) + "'" )
+				database.update_rows("Players","name = '" + str(AutoLoad.player_name) + "'", {"death" : str(res)})
 			caught = true
 			player.movable = false
 			player.visible = false

@@ -15,6 +15,10 @@ run/main_scene="uid://811uan0li8r3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AutoLoad="*res://Scripts/Auto_Load.gd"
+
 [display]
 
 window/size/always_on_top=true

@@ -1,10 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbdaxatvlra0l"]
+[gd_scene load_steps=7 format=3 uid="uid://cbdaxatvlra0l"]
 
 [ext_resource type="FontFile" uid="uid://dm1htfdjtb7dr" path="res://Fonts/Dutch.ttf" id="1_03lwh"]
 [ext_resource type="Texture2D" uid="uid://d3rfup1e15ywj" path="res://SceneObjects/dot.png" id="1_57tj0"]
 [ext_resource type="Texture2D" uid="uid://blu6qkjjeu1wh" path="res://Materials/Blade of Miquella (2).jpg" id="2_udowh"]
+[ext_resource type="Shader" uid="uid://cu0tcll8abw41" path="res://Shaders/crt.gdshader" id="4_hfhsn"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_02egw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qwshj"]
+shader = ExtResource("4_hfhsn")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.055
+shader_parameter/scanlines_width = 0.028
+shader_parameter/grille_opacity = 0.022
+shader_parameter/resolution = Vector2(1280, 960)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.2
+shader_parameter/roll_size = 6.0
+shader_parameter/roll_variation = 3.5
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.055
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.183
+shader_parameter/aberration = 0.015
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.333
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.3
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -116,3 +141,12 @@ offset_bottom = 635.0
 theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("1_03lwh")
 theme_override_font_sizes/normal_font_size = 25
+
+[node name="Shaders" type="CanvasLayer" parent="."]
+
+[node name="CRT" type="ColorRect" parent="Shaders"]
+z_index = -99
+material = SubResource("ShaderMaterial_qwshj")
+offset_right = 1154.0
+offset_bottom = 651.0
+mouse_filter = 2

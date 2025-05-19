@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4lu4dv4kntq6"]
+[gd_scene load_steps=5 format=3 uid="uid://c4lu4dv4kntq6"]
 
 [ext_resource type="Script" uid="uid://bfqnlugea3lwg" path="res://Scripts/Paper.gd" id="1_3g1mj"]
+[ext_resource type="Material" uid="uid://ddhhgmhwgdrvu" path="res://Materials/paper.tres" id="2_oaef5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tb48q"]
 size = Vector3(1.63843, 0.255798, 2.04395)
@@ -16,4 +17,5 @@ shape = SubResource("BoxShape3D_tb48q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("2_oaef5")
 mesh = SubResource("PlaneMesh_ml1d7")
