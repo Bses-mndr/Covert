@@ -34,6 +34,8 @@ var rand_dest
 var current_dest
 var temp_dest
 
+var trigger = false
+
 @export var next_scene : String
 
 func _ready():
@@ -92,11 +94,17 @@ func pick_path(): #Pick random destination if not chasing.
 
 func decision(): #Chasing or Wandering?
 	if chase == false:
+		if trigger == false:
+			$Chase.stop()
+		trigger = true
 		has_found = true
 		speed = walk
 		distance = current_dest.distance_to(global_transform.origin)
 		update_target_location(current_dest)
 	elif chase:
+		if trigger:
+			$Chase.play()
+			trigger = false
 		speed = run
 		distance = player.global_transform.origin.distance_to(global_transform.origin)
 		update_target_location(player.global_position)
@@ -136,6 +144,7 @@ func _process(delta: float) -> void:
 	
 	if chase:
 		if distance <= 2 && caught == false: #Monster catching player.
+			$Jumpscare.play()
 			get_node("/root/"+get_tree().current_scene.name+"/World_Settings/Level_manager").stopped = true
 			var death = database.select_rows("Players","name = '" + AutoLoad.player_name + "'" ,["death"])
 			for i in death:

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5ow6stuq2511"]
+[gd_scene load_steps=11 format=3 uid="uid://b5ow6stuq2511"]
 
 [ext_resource type="Script" uid="uid://d38h2qxnij6db" path="res://Scripts/Player.gd" id="1_yr8qa"]
 [ext_resource type="Script" uid="uid://hjcqyvcafv1u" path="res://Scripts/Camera.gd" id="2_felbj"]
 [ext_resource type="Script" uid="uid://ni2qu1rib8kv" path="res://Scripts/Flashlight.gd" id="3_xipgg"]
 [ext_resource type="Script" uid="uid://bjrnjpxpvghyw" path="res://Scripts/Raycast.gd" id="4_ambdx"]
 [ext_resource type="AudioStream" uid="uid://c0c5jaeduidx" path="res://Audio/flashlight_click.wav" id="4_t4ihn"]
+[ext_resource type="AudioStream" uid="uid://b2h8b6cxtanyp" path="res://Audio/running.wav" id="6_nn08x"]
+[ext_resource type="AudioStream" uid="uid://dhsgy3ovuln7s" path="res://Audio/walking.wav" id="7_52ee3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p3f8g"]
 
@@ -45,3 +47,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000128746, 0)
 [node name="RayCast3D" type="RayCast3D" parent="Head"]
 transform = Transform3D(4, 0, 0, 0, -8.74228e-08, -4, 0, 2, -1.74846e-07, 0, 0, -0.0021342)
 script = ExtResource("4_ambdx")
+
+[node name="Running" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_nn08x")
+volume_db = -30.0
+
+[node name="Walking" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_52ee3")
+volume_db = -30.0

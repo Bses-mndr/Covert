@@ -14,6 +14,8 @@ var stamina_slider
 var stamina_drain = 25
 var stamina_tmp = 0
 var fatigue_warn
+var is_walk = true
+var moving : bool = false
 
 const JUMP_VELOCITY = 2.8
 
@@ -29,6 +31,23 @@ func _ready():
 	self.set_collision_mask_value(2,true)
 
 func _process(delta: float) -> void:
+	
+	is_moving()
+	
+	if is_walk && speed != run_speed && moving:
+		$Walking.play()
+		is_walk = false
+	elif moving != true:
+		$Walking.stop()
+		is_walk = true
+	
+	if Input.is_action_just_pressed("Sprint"):
+		$Walking.stop()
+		$Running.play()
+		is_walk = true
+	elif speed == walk_speed:
+		$Running.stop()
+	
 	if speed == run_speed && stamina >= stamina_slider.min_value: # Decrease stamina when running.
 		stamina_slider.visible = true
 		stamina_tmp = stamina_slider.min_value
@@ -69,6 +88,7 @@ func _physics_process(delta: float) -> void:
 			
 			if Input.is_action_pressed("Sprint") && stamina > stamina_slider.min_value: # Run if there is stamina.
 				speed = run_speed
+				
 			else:
 				speed = walk_speed
 			
@@ -78,3 +98,13 @@ func _physics_process(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0, speed)
 
 		move_and_slide()
+
+
+func is_moving() -> void:
+	var oldpos = global_position
+	await get_tree().create_timer(.2).timeout
+	var newpos = global_position
+	if oldpos != newpos:
+		moving = true
+	else :
+		moving = false

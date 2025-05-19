@@ -76,3 +76,19 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_s3o5h")
 theme_override_font_sizes/font_size = 66
 text = "0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="WinLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_s3o5h")
+theme_override_font_sizes/font_size = 66
+text = "Wins :"
+
+[node name="WinCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_s3o5h")
+theme_override_font_sizes/font_size = 66
+text = "0"

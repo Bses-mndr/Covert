@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://50i4aiomjsar"]
+[gd_scene load_steps=13 format=4 uid="uid://50i4aiomjsar"]
 
 [ext_resource type="Script" uid="uid://4bf0oortkmc5" path="res://Scripts/Monster.gd" id="1_lja0g"]
 [ext_resource type="Texture2D" uid="uid://cxs7tbqr1g6c" path="res://glb_files/Ghost_Ghost.png" id="2_fvjcv"]
 [ext_resource type="Script" uid="uid://b31b5f83k4w0f" path="res://Scripts/Raycast_enemy.gd" id="2_ury6l"]
 [ext_resource type="Script" uid="uid://ca37sd8hyebu5" path="res://Scripts/Radar.gd" id="3_wqfq0"]
 [ext_resource type="Script" uid="uid://3tyhlvm325j5" path="res://Scripts/Surrounding_scan.gd" id="4_li8cl"]
+[ext_resource type="AudioStream" uid="uid://v3bjyyme8r02" path="res://Audio/chase.wav" id="6_i0esf"]
+[ext_resource type="AudioStream" uid="uid://cl40eyy5ynej7" path="res://Audio/jumpscare.wav" id="7_wp20p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sflm1"]
 
@@ -90,6 +92,14 @@ script = ExtResource("4_li8cl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9964, 0)
 shape = SubResource("CylinderShape3D_wqfq0")
+
+[node name="Chase" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_i0esf")
+volume_db = -10.0
+
+[node name="Jumpscare" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_wp20p")
+volume_db = 20.0
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="pick_path"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="velocity_computed"]
